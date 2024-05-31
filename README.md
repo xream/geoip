@@ -1,24 +1,28 @@
 # 数据
 
-来源: [IPinfo](https://ipinfo.io/account/data-downloads), [IP2Location](https://lite.ip2location.com/database-download), [mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list)
+来源: [IPinfo](https://ipinfo.io/account/data-downloads)  ~~[IP2Location](https://lite.ip2location.com/database-download) [mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list)~~
 
 # 文件
-
-## country.mmdb(ip2location+cn)
-
-[https://github.com/xream/geoip/releases/latest/download/country.mmdb](https://github.com/xream/geoip/releases/latest/download/country.mmdb)
-
-## geoip.dat(ip2location+cn)
-
-[https://github.com/xream/geoip/releases/latest/download/geoip.dat](https://github.com/xream/geoip/releases/latest/download/geoip.dat)
 
 ## ipinfo.country.mmdb
 
 [https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb)
 
+## ipinfo.geoip.dat
+
+[https://github.com/xream/geoip/releases/latest/download/ipinfo.geoip.dat](https://github.com/xream/geoip/releases/latest/download/ipinfo.geoip.dat)
+
 ## ipinfo.asn.mmdb
 
 [https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb)
+
+~~## ip2location.country.mmdb~~
+
+~~[https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb)~~
+
+~~## ip2location.geoip.dat~~
+
+~~[https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat](https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat)~~
 
 ## 社群
 
