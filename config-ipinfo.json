@@ -1,28 +1,10 @@
 {
   "input": [
     {
-      "type": "maxmindMMDB",
+      "type": "text",
       "action": "add",
       "args": {
-        "uri": "./IP2LOCATION-LITE-DB1.IPV6.mmdb",
-        "onlyIPType": "ipv6"
-      }
-    },
-    {
-      "type": "maxmindMMDB",
-      "action": "add",
-      "args": {
-        "uri": "./IP2LOCATION-LITE-DB1.IPV4.mmdb",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "cutter",
-      "action": "remove",
-      "args": {
-        "wantedList": [
-          "cn"
-        ]
+        "inputDir": "./data"
       }
     },
     {
@@ -45,14 +27,14 @@
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
-        "outputName": "ip2location.geoip.dat"
+        "outputName": "ipinfo.geoip.dat"
       }
     },
     {
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
-        "outputName": "ip2location.geoip-only-cn-private.dat",
+        "outputName": "ipinfo.geoip-only-cn-private.dat",
         "wantedList": [
           "cn",
           "private"
@@ -63,14 +45,14 @@
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
-        "outputName": "ip2location.country.mmdb"
+        "outputName": "ipinfo.country.mmdb"
       }
     },
     {
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
-        "outputName": "ip2location.country-only-cn-private.mmdb",
+        "outputName": "ipinfo.country-only-cn-private.mmdb",
         "wantedList": [
           "cn",
           "private"

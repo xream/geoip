@@ -31,33 +31,60 @@ jobs:
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
         shell: bash
-      - name: Fetch Data
+      - name: Fetch Tools
         run: |
-          URL=$(curl -s https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
-          FILE=$(echo $URL | xargs basename)
+          # URL=$(curl -s https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          # FILE=$(echo $URL | xargs basename)
+          # echo $URL
+          # echo $FILE
+          # curl -L $URL -o $FILE
+          # tar -xf $FILE
+          # rm $FILE
+          # mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
+          # chmod a+x ip2convert
 
+          URL=$(curl -s https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          FILE=$(echo $URL | xargs basename)
+          echo $URL
+          echo $FILE
           curl -L $URL -o $FILE
           tar -xf $FILE
           rm $FILE
-          mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
-          chmod a+x ip2convert
+          mv $(echo $FILE | sed 's/.tar.gz$//g') mmdbctl
+          chmod a+x mmdbctl
 
-          # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSV" -o DB1LITECSVIPV4.zip
-          # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSVIPV6" -o DB1LITECSVIPV6.zip
-          curl -L "https://file.uhsea.com/2405/e03f86b07e17965de1a5c4de8f4e8d28Q5.zip" -o DB1LITECSVIPV4.zip
-          curl -L "https://file.uhsea.com/2405/786b046512c71cc9809500ff15e355cfOC.zip" -o DB1LITECSVIPV6.zip
-          unzip -o DB1LITECSVIPV4.zip
-          unzip -o DB1LITECSVIPV6.zip
-          mv IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.IPV4.CSV
-          ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
-          ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
+          ls
+      - name: Fetch Data
+        run: |
+          # # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSV" -o DB1LITECSVIPV4.zip
+          # # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSVIPV6" -o DB1LITECSVIPV6.zip
+
+          # curl -L "https://file.uhsea.com/2405/e03f86b07e17965de1a5c4de8f4e8d28Q5.zip" -o DB1LITECSVIPV4.zip
+          # curl -L "https://file.uhsea.com/2405/786b046512c71cc9809500ff15e355cfOC.zip" -o DB1LITECSVIPV6.zip
+
+          # unzip -o DB1LITECSVIPV4.zip
+          # unzip -o DB1LITECSVIPV6.zip
+          # mv IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.IPV4.CSV
+          # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
+          # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
 
           curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
 
-      - name: Build geoip files
+          ./mmdbctl export ipinfo.country.mmdb ./ipinfo/country.csv
+          # ./mmdbctl export ipinfo.asn.mmdb ./ipinfo/asn.csv
+
+          cd ipinfo
+          go run country.go
+
+          cd ..
+
+          rm data/cn
+
+      - name: Build files
         run: |
-          go run ./
+          # go run ./
+          go run ./ -c config-ipinfo.json
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -68,7 +95,12 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           generate_release_notes: true
           files: |
-            ./output/maxmind/country.mmdb
-            ./output/dat/geoip.dat
-            ./ipinfo.country.mmdb
+            # ./output/maxmind/ip2location.country.mmdb
+            # ./output/maxmind/ip2location.country-only-cn-private.mmdb
+            # ./output/dat/ip2location.geoip.dat
+            # ./output/dat/ip2location.geoip-only-cn-private.dat
+            ./output/maxmind/ipinfo.country.mmdb
+            ./output/maxmind/ipinfo.country-only-cn-private.mmdb
+            ./output/dat/ipinfo.geoip.dat
+            ./output/dat/ipinfo.geoip-only-cn-private.dat
             ./ipinfo.asn.mmdb
