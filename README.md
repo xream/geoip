@@ -1,3 +1,35 @@
+# 数据
+
+来源: [IPinfo](https://ipinfo.io/account/data-downloads), [IP2Location](https://lite.ip2location.com/database-download), [mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list)
+
+# 文件
+
+## country.mmdb(ip2location+cn)
+
+[https://github.com/xream/geoip/releases/latest/download/country.mmdb](https://github.com/xream/geoip/releases/latest/download/country.mmdb)
+
+## geoip.dat(ip2location+cn)
+
+[https://github.com/xream/geoip/releases/latest/download/geoip.dat](https://github.com/xream/geoip/releases/latest/download/geoip.dat)
+
+## ipinfo.country.mmdb
+
+[https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb)
+
+## ipinfo.asn.mmdb
+
+[https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb)
+
+## 社群
+
+👏🏻 欢迎加入社群进行交流讨论
+
+👥 群组 [折腾啥(群组)](https://t.me/zhetengsha_group)
+
+📢 频道 [折腾啥(频道)](https://t.me/zhetengsha)
+
+> 以下为原项目的 README.md
+
 # 简介
 
 本项目每周四自动生成 GeoIP 文件，同时提供命令行界面（CLI）供用户自行定制 GeoIP 文件，包括但不限于 V2Ray dat 格式路由规则文件 `geoip.dat` 和 MaxMind mmdb 格式文件 `Country.mmdb`。
