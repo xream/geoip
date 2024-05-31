@@ -1,0 +1,53 @@
+{
+  "input": [
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "inputDir": "./data"
+      }
+    },
+    {
+      "type": "private",
+      "action": "add"
+    }
+  ],
+  "output": [
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "ipinfo.geoip.dat"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "ipinfo.geoip-only-cn-private.dat",
+        "wantedList": [
+          "cn",
+          "private"
+        ]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "ipinfo.country.mmdb"
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "ipinfo.country-only-cn-private.mmdb",
+        "wantedList": [
+          "cn",
+          "private"
+        ]
+      }
+    }
+  ]
+}

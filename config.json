@@ -25,6 +25,10 @@
           "cn"
         ]
       }
+    },
+    {
+      "type": "private",
+      "action": "add"
     }
   ],
   "output": [
@@ -32,14 +36,36 @@
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
-        "outputName": "geoip.dat"
+        "outputName": "ip2location.geoip.dat"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "ip2location.geoip-only-cn-private.dat",
+        "wantedList": [
+          "cn",
+          "private"
+        ]
       }
     },
     {
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
-        "outputName": "country.mmdb"
+        "outputName": "ip2location.country.mmdb"
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "ip2location.country-only-cn-private.mmdb",
+        "wantedList": [
+          "cn",
+          "private"
+        ]
       }
     }
   ]
