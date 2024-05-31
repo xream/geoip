@@ -16,6 +16,10 @@
 
 [https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb)
 
+## ipinfo.geoip.dat
+
+[https://github.com/xream/geoip/releases/latest/download/ipinfo.geoip.dat](https://github.com/xream/geoip/releases/latest/download/ipinfo.geoip.dat)
+
 ## ipinfo.asn.mmdb
 
 [https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb)

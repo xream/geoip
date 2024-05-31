@@ -52,12 +52,32 @@ jobs:
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
 
+
+          URL=$(curl -s https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          FILE=$(echo $URL | xargs basename)
+          echo $URL
+          echo $FILE
+          curl -L $URL -o $FILE
+          tar -xf $FILE
+          rm $FILE
+          mv $(echo $FILE | sed 's/.tar.gz$//g') mmdbctl
+          chmod a+x mmdbctl
+
           curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
+
+          ./mmdbctl export ipinfo.country.mmdb ./ipinfo/country.csv
+          # ./mmdbctl export ipinfo.asn.mmdb ./ipinfo/asn.csv
+
+          cd ipinfo
+          go run country.go
+
+          cd ..
 
       - name: Build geoip files
         run: |
           go run ./
+          go run ./ -c config-ipinfo.json
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -70,5 +90,6 @@ jobs:
           files: |
             ./output/maxmind/country.mmdb
             ./output/dat/geoip.dat
-            ./ipinfo.country.mmdb
+            ./output/ipinfo.country.mmdb
+            ./output/ipinfo.geoip.dat
             ./ipinfo.asn.mmdb
