@@ -1,6 +1,6 @@
 # 数据
 
-来源: [IPinfo](https://ipinfo.io/account/data-downloads) [mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list) ~~[IP2Location](https://lite.ip2location.com/database-download)~~
+来源: [IPinfo](https://ipinfo.io/account/data-downloads) ~~[mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list) [IP2Location](https://lite.ip2location.com/database-download)~~
 
 # 文件
 

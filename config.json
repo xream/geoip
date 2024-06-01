@@ -17,25 +17,6 @@
       }
     },
     {
-      "type": "cutter",
-      "action": "remove",
-      "args": {
-        "wantedList": [
-          "cn"
-        ]
-      }
-    },
-    {
-      "type": "maxmindMMDB",
-      "action": "add",
-      "args": {
-        "uri": "https://raw.githubusercontent.com/alecthw/mmdb_china_ip_list/release/Country.mmdb",
-        "wantedList": [
-          "cn"
-        ]
-      }
-    },
-    {
       "type": "private",
       "action": "add"
     }

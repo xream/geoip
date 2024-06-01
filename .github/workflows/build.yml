@@ -79,7 +79,7 @@ jobs:
 
           cd ..
 
-          rm data/cn
+          # rm data/cn
 
       - name: Build files
         run: |
