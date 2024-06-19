@@ -104,3 +104,8 @@ jobs:
             ./output/dat/ipinfo.geoip.dat
             ./output/dat/ipinfo.geoip-only-cn-private.dat
             ./ipinfo.asn.mmdb
+      - name: Telegram Notification
+        run: |
+          text="🆕 $(date +"%Y-%m-%d %H:%M:%S")"$'\n\n'"📌 数据源为 IPinfo 的 geoip  和 mmdb 文件 已更新"$'\n\n'"📘 查看说明 https://t.me/zhetengsha/1459"
+          echo $text
+          curl -F disable_notification=true -F "chat_id=-1001771725356" -F "text=$text" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
