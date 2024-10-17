@@ -70,7 +70,7 @@ jobs:
           # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
           # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
 
-          curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.asn.mmdb
+          curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo/asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
 
           ./mmdbctl export ipinfo.country.mmdb ./ipinfo/country.csv
@@ -78,6 +78,9 @@ jobs:
 
           cd ipinfo
           go run country.go
+          go run convert/asn.go
+
+          mv new-asn.mmdb ../ipinfo.asn.mmdb
 
           cd ..
 
