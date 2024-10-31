@@ -35,15 +35,15 @@ jobs:
         shell: bash
       - name: Fetch Tools
         run: |
-          # URL=$(curl -s https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
-          # FILE=$(echo $URL | xargs basename)
-          # echo $URL
-          # echo $FILE
-          # curl -L $URL -o $FILE
-          # tar -xf $FILE
-          # rm $FILE
-          # mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
-          # chmod a+x ip2convert
+          URL=$(curl -s https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          FILE=$(echo $URL | xargs basename)
+          echo $URL
+          echo $FILE
+          curl -L $URL -o $FILE
+          tar -xf $FILE
+          rm $FILE
+          mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
+          chmod a+x ip2convert
 
           URL=$(curl -s https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
           FILE=$(echo $URL | xargs basename)
@@ -58,17 +58,14 @@ jobs:
           ls
       - name: Fetch Data
         run: |
-          # # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSV" -o DB1LITECSVIPV4.zip
-          # # curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSVIPV6" -o DB1LITECSVIPV6.zip
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSV" -o DB1LITECSVIPV4.zip
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DB1LITECSVIPV6" -o DB1LITECSVIPV6.zip
 
-          # curl -L "https://file.uhsea.com/2405/e03f86b07e17965de1a5c4de8f4e8d28Q5.zip" -o DB1LITECSVIPV4.zip
-          # curl -L "https://file.uhsea.com/2405/786b046512c71cc9809500ff15e355cfOC.zip" -o DB1LITECSVIPV6.zip
-
-          # unzip -o DB1LITECSVIPV4.zip
-          # unzip -o DB1LITECSVIPV6.zip
-          # mv IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.IPV4.CSV
-          # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
-          # ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
+          unzip -o DB1LITECSVIPV4.zip
+          unzip -o DB1LITECSVIPV6.zip
+          mv IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.IPV4.CSV
+          cat IP2LOCATION-LITE-DB1.IPV4.CSV IP2LOCATION-LITE-DB1.IPV6.CSV > IP2LOCATION-LITE-DB1.CSV
+          ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.CSV -o IP2LOCATION-LITE-DB1.mmdb
 
           curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo/asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
@@ -109,6 +106,7 @@ jobs:
             ./output/dat/ipinfo.geoip.dat
             ./output/dat/ipinfo.geoip-only-cn-private.dat
             ./ipinfo.asn.mmdb
+            ./IP2LOCATION-LITE-DB1.mmdb
       - name: Telegram Notification
         run: |
           text="🆕 $(date +"%Y-%m-%d %H:%M:%S")"$'\n\n'"📌 数据源为 IPinfo 的 geoip  和 mmdb 文件 已更新"$'\n\n'"📘 查看说明 https://t.me/zhetengsha/1459"
