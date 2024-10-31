@@ -1,8 +1,12 @@
-# 数据
+# 数据来源
 
-来源: [IPinfo](https://ipinfo.io/account/data-downloads) ~~[mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list) [IP2Location](https://lite.ip2location.com/database-download)~~
+[IPinfo](https://ipinfo.io/account/data-downloads)
 
-# 文件
+[IP2Location](https://lite.ip2location.com/database-download)
+
+~~[mmdb_china_ip_list](https://github.com/alecthw/mmdb_china_ip_list)~~
+
+# IPinfo
 
 ## ipinfo.country.mmdb
 
@@ -24,13 +28,23 @@
 
 [https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb](https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb)
 
-~~## ip2location.country.mmdb~~
+# IP2Location Lite
 
-~~[https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb)~~
+## ip2location.country.mmdb
 
-~~## ip2location.geoip.dat~~
+[https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb](https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb)
 
-~~[https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat](https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat)~~
+## ip2location.country.mmdb(cn, private)
+
+[https://github.com/xream/geoip/releases/latest/download/ip2location.country-only-cn-private.mmdb](https://github.com/xream/geoip/releases/latest/download/ip2location.country-only-cn-private.mmdb)
+
+## ip2location.geoip.dat
+
+[https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat](https://github.com/xream/geoip/releases/latest/download/ip2location.geoip.dat)
+
+## ip2location.geoip.dat(cn, private)
+
+[https://github.com/xream/geoip/releases/latest/download/ip2location.geoip-only-cn-private.dat](https://github.com/xream/geoip/releases/latest/download/ip2location.geoip-only-cn-private.dat)
 
 ## 社群
 
@@ -111,7 +125,7 @@ rules:
 ## 下载地址
 
 > 如果无法访问域名 `raw.githubusercontent.com`，可以使用第二个地址 `cdn.jsdelivr.net`。
-> *.sha256sum 为校验文件。
+> \*.sha256sum 为校验文件。
 
 ### V2Ray dat 格式路由规则文件
 
