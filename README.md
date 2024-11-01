@@ -46,6 +46,10 @@
 
 [https://github.com/xream/geoip/releases/latest/download/ip2location.geoip-only-cn-private.dat](https://github.com/xream/geoip/releases/latest/download/ip2location.geoip-only-cn-private.dat)
 
+## ip2location.asn.mmdb
+
+[https://github.com/xream/geoip/releases/latest/download/ip2location.asn.mmdb](https://github.com/xream/geoip/releases/latest/download/ip2location.asn.mmdb)
+
 ## 社群
 
 👏🏻 欢迎加入社群进行交流讨论
