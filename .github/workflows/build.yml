@@ -70,6 +70,14 @@ jobs:
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
 
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DBASNLITE" -o DBASNLITEIPV4.zip
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DBASNLITEIPV6" -o DBASNLITEIPV6.zip
+
+          unzip -o DBASNLITEIPV4.zip
+          unzip -o DBASNLITEIPV6.zip
+
+          go run ip2location/csv2asn.go
+
           curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo/asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
 
@@ -102,6 +110,7 @@ jobs:
           files: |
             ./output/maxmind/ip2location.country.mmdb
             ./output/maxmind/ip2location.country-only-cn-private.mmdb
+            ./output/maxmind/ip2location.asn.mmdb
             ./output/dat/ip2location.geoip.dat
             ./output/dat/ip2location.geoip-only-cn-private.dat
             ./output/maxmind/ipinfo.country.mmdb
