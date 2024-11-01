@@ -70,6 +70,14 @@ jobs:
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV4.CSV -o IP2LOCATION-LITE-DB1.IPV4.mmdb
           ./ip2convert csv2mmdb -t country -i IP2LOCATION-LITE-DB1.IPV6.CSV -o IP2LOCATION-LITE-DB1.IPV6.mmdb
 
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DBASNLITE" -o DBASNLITEIPV4.zip
+          curl -L "https://www.ip2location.com/download/?token=${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}&file=DBASNLITEIPV6" -o DBASNLITEIPV6.zip
+
+          unzip -o DBASNLITEIPV4.zip
+          unzip -o DBASNLITEIPV6.zip
+
+          ls
+
           curl -L "https://ipinfo.io/data/free/asn.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo/asn.mmdb
           curl -L "https://ipinfo.io/data/free/country.mmdb?token=${{ secrets.IPINFO_DOWNLOAD_TOKEN }}" -o ipinfo.country.mmdb
 
