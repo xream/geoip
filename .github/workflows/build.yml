@@ -2,16 +2,16 @@ name: Build geoip files
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 10 * * *"
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - ".gitignore"
-      - "config-example.json"
-      - "LICENSE"
-      - "README.md"
-      - ".github/dependabot.yml"
+    - cron: "0 10 */2 * *"
+  # push:
+  #   branches:
+  #     - master
+  #   paths-ignore:
+  #     - ".gitignore"
+  #     - "config-example.json"
+  #     - "LICENSE"
+  #     - "README.md"
+  #     - ".github/dependabot.yml"
 jobs:
   build:
     name: Build
