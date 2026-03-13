@@ -35,7 +35,7 @@ jobs:
         shell: bash
       - name: Fetch Tools
         run: |
-          URL=$(curl -s https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          URL=$(curl -s -L https://api.github.com/repos/ip2location/ip2convert/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
           FILE=$(echo $URL | xargs basename)
           echo $URL
           echo $FILE
@@ -45,7 +45,7 @@ jobs:
           mv $(echo $FILE | sed 's/.tar.gz$//g') ip2convert
           chmod a+x ip2convert
 
-          URL=$(curl -s https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
+          URL=$(curl -s -L https://api.github.com/repos/ipinfo/mmdbctl/releases/latest | grep 'download_url.*linux_amd64' | awk '{ print $2 }' | sed 's/"//g')
           FILE=$(echo $URL | xargs basename)
           echo $URL
           echo $FILE
